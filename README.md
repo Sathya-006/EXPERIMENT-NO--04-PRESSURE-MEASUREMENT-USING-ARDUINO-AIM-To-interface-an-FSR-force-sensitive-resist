@@ -54,12 +54,13 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 
-![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
+![image](https://github.com/vasanthkumarch/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/121661327/f555e970-b12d-43ca-95d6-b7547aabfd0e)
 
 
 
 ### FIGURE-03 CIRCUIT DIAGRAM
 
+![Screenshot 2024-02-29 114259](https://github.com/vasanthkumarch/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/121661327/18fa67b1-c932-4d44-b4bc-e239539544f9)
 
 
 ### PROCEDURE:
@@ -76,9 +77,51 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 ### PROGRAM 
- *your roll no 
- * your name 
- * department and year 
+```
+int fsr;
+int LED=7;
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  fsr=analogRead(A0);
+  Serial.print("raw value=");
+  Serial.println(fsr);
+  delay(1000);
+  int m;
+  m=map(fsr,0,159,0,10);
+  Serial.print("mapped value=");
+  Serial.println(m);
+  delay(1000);
+
+
+if(m>5)
+{
+  digitalWrite(LED,HIGH);
+  delay(500);
+  digitalWrite(LED,LOW);
+  delay(500);
+}
+}
+```
+
+sl no	force applied	mapped value	SIGMA		error
+1	1.11	               2	17.64		-0.89
+2	2.02	               3	10.24		-0.98
+3	3.09	               4	4.84		-0.91
+4	4.03	               5	1.44		-0.97
+5	5.09	               6	0.04		-0.91
+6	6.12	               7	0.64		-0.88
+7	7.09	               8	3.24		-0.91
+8	8.12	               8	3.24		0.12
+9	9.03	               9	7.84		0.03
+10	10	              10	14.44		0
+	MU	              6.2	63.6	
+			                0.797496081	
  
  
  
@@ -95,7 +138,7 @@ The easiest way to measure a resistive sensor is to connect one end to power and
  
  
 
-![image](https://user-images.githubusercontent.com/36288975/188804653-a3154e8e-2655-46f2-9dcd-f425dd1ba109.png)
+
 
 
 ### TABLE -02 standard deviation table 
